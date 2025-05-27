@@ -1,7 +1,9 @@
 # IRF3_paper_data
 
 <div align="center">
-  <img src="./image.png" alt="Description of image" width="300"/>
+  <img src="./image.png" alt="Hydrophobic (orange) and hydrophilic (blue) regions on IRF3 protein" width="500"/>
+  <br>
+  <em>Hydrophobic (orange) and hydrophilic (blue) regions on the IRF3 protein chain.</em>
 </div>
 
 This repository contains data and scripts related to the analysis of MixMD and dewetting simulations of the IRF3 protein. The project is organized into several folders, each serving a specific purpose:
