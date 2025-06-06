@@ -1,0 +1,52 @@
+#!/bin/bash
+#SBATCH -A ohu111
+#SBATCH --job-name="IMI_var6"
+#SBATCH --partition=gpu-shared
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --gpus=1
+#SBATCH --export=ALL
+#SBATCH -t 48:00:00
+
+module purge
+module load gpu/0.15.4
+#module load slurm
+module load openmpi/4.0.4
+module load cuda/11.0.2
+
+module load amber/20
+
+export OMP_NUM_THREADS=1
+
+pmemd.cuda -O -i 1A_solvmin.1.in -o 1A_solvmin.out -p 1qwt_shell_solvated_IMI.top -c 1qwt_shell_solvated_IMI.inpcrd -r 1A_solvmin.ncrst -x 1A_solvmin.nc -ref 1qwt_shell_solvated_IMI.inpcrd -inf 1A_solvmin.mdinfo
+pmemd.cuda -O -i 1B_allmin.1.in -o 1B_allmin.out -p 1qwt_shell_solvated_IMI.top -c 1A_solvmin.ncrst -r 1B_allmin.ncrst -x 1B_allmin.nc -inf 1B_allmin.mdinfo
+pmemd.cuda -O -i 2A_heating1.1.in -o 2A_heating1.1.out -p 1qwt_shell_solvated_IMI.top -c 1B_allmin.ncrst -r 2A_heating1.1.ncrst -x 2A_heating1.1.nc -ref 1B_allmin.ncrst -inf 2A_heating1.1.mdinfo
+pmemd.cuda -O -i 2B_heating2.1.in -o 2B_heating2.1.out -p 1qwt_shell_solvated_IMI.top -c 2A_heating1.1.ncrst -r 2B_heating2.1.ncrst -x 2B_heating2.1.nc -ref 2A_heating1.1.ncrst -inf 2B_heating2.1.mdinfo
+pmemd.cuda -O -i 2C_heating3.1.in -o 2C_heating3.1.out -p 1qwt_shell_solvated_IMI.top -c 2B_heating2.1.ncrst -r 2C_heating3.1.ncrst -x 2C_heating3.1.nc -ref 2A_heating1.1.ncrst -inf 2C_heating3.1.mdinfo
+pmemd.cuda -O -i 3A_equilibrate.1.in -o 3A_equilibrate.1.out -p 1qwt_shell_solvated_IMI.top -c 2C_heating3.1.ncrst -r 3A_equilibrate.1.ncrst -x 3A_equilibrate.1.nc -ref 2C_heating3.1.ncrst -inf 3A_equilibrate.1.mdinfo
+pmemd.cuda -O -i 3B_equilibrate-bb1.1.in -o 3B_equilibrate-bb1.1.out -p 1qwt_shell_solvated_IMI.top -c 3A_equilibrate.1.ncrst -r 3B_equilibrate-bb1.1.ncrst -x 3B_equilibrate-bb1.1.nc -ref 3A_equilibrate.1.ncrst -inf 3B_equilibrate-bb1.1.mdinfo
+pmemd.cuda -O -i 3C_equilibrate-bb2.1.in -o 3C_equilibrate-bb2.1.out -p 1qwt_shell_solvated_IMI.top -c 3B_equilibrate-bb1.1.ncrst -r 3C_equilibrate-bb2.1.ncrst -x 3C_equilibrate-bb2.1.nc -ref 3A_equilibrate.1.ncrst -inf 3C_equilibrate-bb2.1.mdinfo
+pmemd.cuda -O -i 3D_equilibrate-bb3.1.in -o 3D_equilibrate-bb3.1.out -p 1qwt_shell_solvated_IMI.top -c 3C_equilibrate-bb2.1.ncrst -r 3D_equilibrate-bb3.1.ncrst -x 3D_equilibrate-bb3.1.nc -ref 3A_equilibrate.1.ncrst -inf 3D_equilibrate-bb3.1.mdinfo
+pmemd.cuda -O -i 3E_equilibratef.1.in -o 3E_equilibrate.1.out -p 1qwt_shell_solvated_IMI.top -c 3D_equilibrate-bb3.1.ncrst -r 3E_equilibrate.1.ncrst -x 3E_equilibrate.1.nc -inf 3E_equilibrate.1.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4A_production.out -p 1qwt_shell_solvated_IMI.top -c 3E_equilibrate.1.ncrst -r New4A_production.ncrst -x New4A_production.nc -inf New4A_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4B_production.out -p 1qwt_shell_solvated_IMI.top -c New4A_production.ncrst -r New4B_production.ncrst -x New4B_production.nc -inf New4B_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4C_production.out -p 1qwt_shell_solvated_IMI.top -c New4B_production.ncrst -r New4C_production.ncrst -x New4C_production.nc -inf New4C_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4D_production.out -p 1qwt_shell_solvated_IMI.top -c New4C_production.ncrst -r New4D_production.ncrst -x New4D_production.nc -inf New4D_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4E_production.out -p 1qwt_shell_solvated_IMI.top -c New4D_production.ncrst -r New4E_production.ncrst -x New4E_production.nc -inf New4E_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4F_production.out -p 1qwt_shell_solvated_IMI.top -c New4E_production.ncrst -r New4F_production.ncrst -x New4F_production.nc -inf New4F_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4G_production.out -p 1qwt_shell_solvated_IMI.top -c New4F_production.ncrst -r New4G_production.ncrst -x New4G_production.nc -inf New4G_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4H_production.out -p 1qwt_shell_solvated_IMI.top -c New4G_production.ncrst -r New4H_production.ncrst -x New4H_production.nc -inf New4H_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4I_production.out -p 1qwt_shell_solvated_IMI.top -c New4H_production.ncrst -r New4I_production.ncrst -x New4I_production.nc -inf New4I_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4J_production.out -p 1qwt_shell_solvated_IMI.top -c New4I_production.ncrst -r New4J_production.ncrst -x New4J_production.nc -inf New4J_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4K_production.out -p 1qwt_shell_solvated_IMI.top -c New4J_production.ncrst -r New4K_production.ncrst -x New4K_production.nc -inf New4K_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4L_production.out -p 1qwt_shell_solvated_IMI.top -c New4K_production.ncrst -r New4L_production.ncrst -x New4L_production.nc -inf New4L_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4M_production.out -p 1qwt_shell_solvated_IMI.top -c New4L_production.ncrst -r New4M_production.ncrst -x New4M_production.nc -inf New4M_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4N_production.out -p 1qwt_shell_solvated_IMI.top -c New4M_production.ncrst -r New4N_production.ncrst -x New4N_production.nc -inf New4N_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4O_production.out -p 1qwt_shell_solvated_IMI.top -c New4N_production.ncrst -r New4O_production.ncrst -x New4O_production.nc -inf New4O_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4P_production.out -p 1qwt_shell_solvated_IMI.top -c New4O_production.ncrst -r New4P_production.ncrst -x New4P_production.nc -inf New4P_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4Q_production.out -p 1qwt_shell_solvated_IMI.top -c New4P_production.ncrst -r New4Q_production.ncrst -x New4Q_production.nc -inf New4Q_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4R_production.out -p 1qwt_shell_solvated_IMI.top -c New4Q_production.ncrst -r New4R_production.ncrst -x New4R_production.nc -inf New4R_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4S_production.out -p 1qwt_shell_solvated_IMI.top -c New4R_production.ncrst -r New4S_production.ncrst -x New4S_production.nc -inf New4S_production.mdinfo
+pmemd.cuda -O -i New4A_production.in -o New4T_production.out -p 1qwt_shell_solvated_IMI.top -c New4S_production.ncrst -r New4T_production.ncrst -x New4T_production.nc -inf New4T_production.mdinfo
+#srun --mpi=pmi2 -n $processors --cpus-per-task=1 lmp -sf gpu -pk gpu 1 -in mixture_water.in

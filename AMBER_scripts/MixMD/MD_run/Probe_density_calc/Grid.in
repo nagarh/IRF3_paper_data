@@ -1,0 +1,18 @@
+parm /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run1/1qwt_shell_solvated_IMI.top
+trajin align_IMI_1P3.xtc
+
+#reference /expanse/lustre/projects/ohu111/hemantn/MixedMD/1P3/Analysis/IRF3_1P3.pdb 
+#trajin aligned_ST_1to10.xtc
+#autoimage origin
+#rms fit :1-241
+
+#autoimage origin
+#rms fit first :1-241
+#strip :WAT
+#trajout alinged_all_till10.pdb 
+average IRF3_IMI.mol2 :1-241
+average IRF3_IMI.pdb :1-241
+#grid out_align_IMI_1P3.xplor 200 0.5 200 0.5 200 0.5 :IMI bymol
+grid out_align_IMI_1P3.xplor 200 0.5 200 0.5 200 0.5 :IMI bymol 
+#grid out_align_IMI_1P3_water.dx 200 0.5 200 0.5 200 0.5 :WAT bymol 
+

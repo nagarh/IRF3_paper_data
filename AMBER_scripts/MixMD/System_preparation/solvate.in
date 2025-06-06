@@ -1,0 +1,12 @@
+source leaprc.protein.ff14SB
+source leaprc.gaff2
+source leaprc.water.tip3p
+loadamberprep Imidazole_JJ_AMBER.prepi
+loadamberparams Imidazole_JJ_AMBERw.frcmod
+x= loadpdb 1qwt_shell.pdb
+charge x
+addions x Na+ 0.0
+solvatebox x TIP3PBOX 3.0 iso
+savepdb x 1qwt_shell_solvated_IMI.pdb
+saveamberparm x 1qwt_shell_solvated_IMI.top 1qwt_shell_solvated_IMI.inpcrd 
+quit 

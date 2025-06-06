@@ -1,0 +1,11 @@
+source leaprc.protein.ff14SB
+source leaprc.gaff2
+prot = loadpdb 1QWT_mono_cleaned_capped.pdb
+loadamberprep Imidazole_JJ_AMBER.prepi
+loadamberparams Imidazole_JJ_AMBERw.frcmod
+probe = loadpdb IMI_box_102thFrame.pdb
+setBox probe centers 
+solvateshell prot probe 8.0 
+savepdb prot 1qwt_shell.pdb
+quit
+

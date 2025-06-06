@@ -1,0 +1,32 @@
+parm /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run1/1qwt_shell_solvated_IMI.top [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run1/New4S_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run1/New4T_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run2/New4S_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run2/New4T_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run3/New4S_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run3/New4T_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run4/New4S_production.nc parm [data2] 
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run4/New4T_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run5/New4S_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run5/New4T_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run6/New4S_production.nc parm [data2] 
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run6/New4T_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run7/New4S_production.nc parm [data2] 
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run7/New4T_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run8/New4S_production.nc parm [data2] 
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run8/New4T_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run9/New4S_production.nc parm [data2] 
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run9/New4T_production.nc parm [data2]
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run10/New4S_production.nc parm [data2] 
+trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/IMI/run10/New4T_production.nc parm [data2]
+
+parm /expanse/lustre/projects/ohu111/hemantn/MixedMD/1P3/run1/1qwt_shell_solvated_1P3.top [data1]
+#trajin /expanse/lustre/projects/ohu111/hemantn/MixedMD/1P3/run1/New4S_production.nc  parm [data1]
+reference /expanse/lustre/projects/ohu111/hemantn/MixedMD/1P3/Analysis/IRF3_1P3_run1_2.pdb parm [data1]
+
+#strip :WAT,Na+
+autoimage origin
+rms fit reference :1-241 
+
+trajout align_IMI_1P3.xtc
+
