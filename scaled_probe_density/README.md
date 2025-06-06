@@ -7,9 +7,10 @@ This directory contains the scaled probe density data of probes from MixMD simul
 In the MixMD simulations, the IRF3 protein chain is simulated in the presence of different probe molecules. The goal is to identify regions on the protein surface where the probes accumulate, which may indicate potential binding sites.
 
 The entire simulation box is divided into grids with a resolution of 0.5 Å. For each voxel in the grid, the average occupancy of probe molecules is determined. A normalized density, $\zeta$, is then calculated for each voxel as:  
-$$
-\zeta = \frac{x - \mu}{\sigma}
-$$
+&nbsp;  
+<p align="center">
+  ζ = (x − μ) / σ
+</p>
 
 where:
 - $x$ is the ensemble-averaged occupancy in the voxel,
