@@ -1,4 +1,4 @@
-# AMBER_scripts
+# AMBER Scripts
 
 This directory contains scripts and input files for running MixMD and dewetting simulations using AMBER and PLUMED.
 
