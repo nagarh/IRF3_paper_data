@@ -15,9 +15,9 @@ This directory contains scripts and input files for running MixMD and dewetting 
     **Workflow:**  
     1. Create a simulation box containing only probe molecules.  
     2. Equilibrate the probe box and extract an equilibrated frame.  
-    3. Use `shell_leap.in` and then `solvate.in` to build the system.  
-    4. Use `VbyV_check.py` to check the %v/v (volume/volume) of the probe to water.  
-    5. Adjust the number of water molecules in `solvate.in` until the probe concentration reaches 5% v/v (probe/water).
+    3. Use [`shell_leap.in`](./MixMD/System_preparation/shell_leap.in) and then [`solvate.in`](./MixMD/System_preparation/solvate.in) to build the system.  
+    4. Use [`VbyV_check.py`](./MixMD/System_preparation/VbyV_check.py) to check the %v/v (volume/volume) of the probe to water.  
+    5. Adjust the number of water molecules in [`solvate.in`](./MixMD/System_preparation/solvate.in) until the probe concentration reaches 5% v/v (probe/water).
   
   - [MD_run](./MixMD/MD_run/)  
     Contains AMBER scripts for running the MixMD production simulations.
