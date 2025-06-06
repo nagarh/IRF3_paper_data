@@ -1,4 +1,4 @@
-# IRF3_paper_data
+# Hydrophobic Regions and Druggable Binding Sites on Interferon Regulatory Factor 3 Protein Identified Using Dewetting and Mixed Solvent Simulations
 
 <div align="center">
   <img src="./image.png" alt="Hydrophobic (orange) and hydrophilic (blue) regions on IRF3 protein" width="500"/>
